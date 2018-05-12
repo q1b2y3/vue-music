@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<button @click="submits">点击</button>
+		</div>
+		
+		<script type="text/javascript" src="../lib/vue.min.js" ></script>
+		<script type="text/javascript" src="../lib/vue-resource.js" ></script>
+		<script>
+			new Vue({
+				el:"#app",
+				methods:{
+					submits(){
+						let pro = new Promise((resolve,reject)=>{
+							this.$http.get("http://127.0.0.1:8020/h1706study/data/cartData.json",{}).then(req=>{
+								if(req){
+									resolve(req);
+								}
+								
+							})
+						})
+												
+						pro.then((req)=>{
+							console.log(req);
+						})
+					}
+				}
+			})
+			
+		</script>
+	</body>
+</html>
